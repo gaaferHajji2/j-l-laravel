@@ -14,5 +14,5 @@ Route::get('/demo', function(DeployApp $deploy) {
     //     "status" => "Deploy Ok",
     // ], 200);
 
-    dd($deploy);
+    // dd($deploy);
 });

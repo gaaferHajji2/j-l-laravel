@@ -19,9 +19,9 @@ class DeployApp
     )
     {
 
-        // dd($connection);
+        dd($connection);
 
-        // dd($githubToken);
+        dd($githubToken);
 
     }
 }
