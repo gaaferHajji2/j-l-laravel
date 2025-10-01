@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use App\Services\DeployApp;
 use App\Services\GetUser;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,5 +35,15 @@ Route::get('/user', function(GetUser $getUserInfo) {
     return response()->json([
         'msg' => 'Getting user',
     ]);
+
+});
+
+Route::get('/users', function() {
+
+    DB::listen(fn ($e) => dump($e->toRawSql()));
+
+    $users = User::all();
+
+    return $users;
 
 });

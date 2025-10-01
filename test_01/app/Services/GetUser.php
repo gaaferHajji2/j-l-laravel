@@ -10,7 +10,7 @@ class GetUser {
     public function __construct (
         #[CurrentUser] User $user
     ) {
-        dd($user->toArray());
+        dd($user);
     }
 
 }
