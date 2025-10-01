@@ -20,9 +20,9 @@ Route::get('/img', function() {
 
 Route::get('/demo', function(DeployApp $deploy) {
 
-    // return response()->json([
-    //     "status" => "Deploy Ok",
-    // ], 200);
+    return response()->json([
+        "status" => "Deploy Ok",
+    ], 200);
 
     // dd($deploy);
 });
