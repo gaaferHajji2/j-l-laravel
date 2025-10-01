@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\DeployApp;
+use App\Services\GetUser;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,4 +26,12 @@ Route::get('/demo', function(DeployApp $deploy) {
     ], 200);
 
     // dd($deploy);
+});
+
+Route::get('/user', function(GetUser $getUserInfo) {
+
+    return response()->json([
+        'msg' => 'Getting user',
+    ]);
+
 });
