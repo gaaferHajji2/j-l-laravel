@@ -1,5 +1,7 @@
 <?php
 namespace App\Services;
+
+use App\Http\Requests\CustomerRequest;
 use App\Interfaces\IFirstInterface;
 use App\Models\Customer;
 
@@ -13,7 +15,14 @@ class FirstService implements IFirstInterface
         //
     }
 
-    public function createNewCustomer() {}
+    public function createNewCustomer(CustomerRequest $request) {
+        $customer = new Customer();
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->customer_code = $request->customer_code;
+        $customer->save();
+        return $customer;
+    }
     
     public function createNewPassport() {}
 
@@ -22,4 +31,8 @@ class FirstService implements IFirstInterface
     }
     
     public function getCustomerById(int $id) {}
+
+    public function getCustomerByEmailOrCode(string $name, string $code) {
+        return Customer::where(['name' => $name])->orWhere(['customer_code' => $code])->first();
+    }
 }

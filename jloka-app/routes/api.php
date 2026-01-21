@@ -9,7 +9,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('customers')->group(function() {
-
     Route::get('/', [FirstController::class, 'getAllCustomers']);
-
+    Route::post('/', [FirstController::class, 'createNewCustomer']);
 });
