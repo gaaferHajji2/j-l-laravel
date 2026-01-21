@@ -30,7 +30,9 @@ class FirstService implements IFirstInterface
         return Customer::all(['name', 'email', 'id']);
     }
     
-    public function getCustomerById(int $id) {}
+    public function getCustomerById(int $id) {
+        return Customer::where(['id' => $id])->first();
+    }
 
     public function getCustomerByEmailOrCode(string $name, string $code) {
         return Customer::where(['name' => $name])->orWhere(['customer_code' => $code])->first();

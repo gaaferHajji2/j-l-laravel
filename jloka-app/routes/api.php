@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 Route::prefix('customers')->group(function() {
     Route::get('/', [FirstController::class, 'getAllCustomers']);
     Route::post('/', [FirstController::class, 'createNewCustomer']);
+    Route::get('/{id}', [FirstController::class, 'getCustomerById']);
 });

@@ -32,4 +32,14 @@ class FirstController extends Controller
         $customer = $this->service->createNewCustomer($request);
         return response()->json($customer, 201);
     }
+
+    public function getCustomerById(int $id) {
+        $customer = $this->service->getCustomerById($id);
+
+        if($customer == null) {
+            return response()->json(['msg'=>'Not Found'], 404);
+        }
+
+        return response()->json($customer);
+    }
 }
