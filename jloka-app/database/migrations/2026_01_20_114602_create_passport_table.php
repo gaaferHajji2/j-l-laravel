@@ -22,7 +22,7 @@ return new class extends Migration
             // Custom foreign key constraint
             $table->foreign('customer_identifier')
                   ->references('customer_code')
-                  ->on('users')
+                  ->on('customers')
                   ->onDelete('cascade');
                   
             $table->timestamps();
