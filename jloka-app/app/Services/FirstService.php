@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\IFirstInterface;
+use App\Models\Customer;
 
 class FirstService implements IFirstInterface
 {
@@ -16,6 +17,8 @@ class FirstService implements IFirstInterface
 
     public function createNewCustomer() {}
     public function createNewPassport() {}
-    public function getAllCustomers() {}
+    public function getAllCustomers() {
+        return Customer::all(['name', 'email', 'id']);
+    }
     public function getCustomerById(int $id) {}
 }
