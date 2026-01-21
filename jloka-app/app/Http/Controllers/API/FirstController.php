@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
+use App\Http\Resources\GetAllCustomerResource;
+use App\Http\Resources\GetDetailCustomerResource;
 use App\Interfaces\IFirstInterface;
 use Illuminate\Http\Request;
 
@@ -19,7 +21,7 @@ class FirstController extends Controller
 
     public function getAllCustomers() {
         $customers = $this->service->getAllCustomers();
-        return response()->json($customers);
+        return GetAllCustomerResource::collection($customers);
     }
 
     public function createNewCustomer(CustomerRequest $request) {
@@ -30,7 +32,7 @@ class FirstController extends Controller
         }
 
         $customer = $this->service->createNewCustomer($request);
-        return response()->json($customer, 201);
+        return (new GetDetailCustomerResource($customer))->response()->setStatusCode(201);
     }
 
     public function getCustomerById(int $id) {
@@ -40,6 +42,6 @@ class FirstController extends Controller
             return response()->json(['msg'=>'Not Found'], 404);
         }
 
-        return response()->json($customer);
+        return new GetDetailCustomerResource($customer);
     }
 }
