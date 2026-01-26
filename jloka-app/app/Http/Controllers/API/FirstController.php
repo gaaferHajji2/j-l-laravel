@@ -7,7 +7,6 @@ use App\Http\Requests\CustomerRequest;
 use App\Http\Resources\GetAllCustomerResource;
 use App\Http\Resources\GetDetailCustomerResource;
 use App\Interfaces\IFirstInterface;
-use Illuminate\Http\Request;
 
 class FirstController extends Controller
 {
