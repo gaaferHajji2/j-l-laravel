@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreatePassportRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Http\Resources\GetAllCustomerResource;
 use App\Http\Resources\GetDetailCustomerResource;
@@ -42,5 +43,9 @@ class FirstController extends Controller
         }
 
         return new GetDetailCustomerResource($customer);
+    }
+
+    public function createNewPassportData(CreatePassportRequest $request) {
+
     }
 }
