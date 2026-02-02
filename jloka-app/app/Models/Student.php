@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    use HasUuids;
     protected $primaryKey = 'student_reg_no';
     public $incrementing = false;
     
