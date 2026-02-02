@@ -46,6 +46,6 @@ class FirstController extends Controller
     }
 
     public function createNewPassportData(CreatePassportRequest $request) {
-
+        return response()->json($this->service->createNewPassport($request), 201);
     }
 }

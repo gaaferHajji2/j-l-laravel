@@ -2,13 +2,14 @@
 
 namespace App\Interfaces;
 
+use App\Http\Requests\CreatePassportRequest;
 use App\Http\Requests\CustomerRequest;
 
 interface IFirstInterface
 {
     public function createNewCustomer(CustomerRequest $request);
     
-    public function createNewPassport();
+    public function createNewPassport(CreatePassportRequest $request);
 
     public function getAllCustomers();
     

@@ -1,9 +1,11 @@
 <?php
 namespace App\Services;
 
+use App\Http\Requests\CreatePassportRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Interfaces\IFirstInterface;
 use App\Models\Customer;
+use App\Models\Passport;
 
 class FirstService implements IFirstInterface
 {
@@ -24,7 +26,16 @@ class FirstService implements IFirstInterface
         return $customer;
     }
     
-    public function createNewPassport() {}
+    public function createNewPassport(CreatePassportRequest $request) {
+        $passport = new Passport();
+        $passport->passport_number = $request->passport_number;
+        $passport->issue_date = $request->issue_date;
+        $passport->expiry_date = $request->expiry_date;
+        $passport->country = $request->country;
+        $passport->customer_identifier = $request->customer_identifier;
+        $passport->save();
+        return $passport;
+    }
 
     public function getAllCustomers() {
         return Customer::all(['name', 'email', 'id']);
