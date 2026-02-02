@@ -23,8 +23,8 @@ class CreatePassportRequest extends FormRequest
     {
         return [
             "passport_number"   => 'required|min:1|max:255|unique:passports',
-            "issue_date"        => 'required|date|date_format:YYYY-mm-dd|after:yesterday',
-            "expiry_date"       => 'required|date|date_format:YYYY-mm-dd|after:issue_date',
+            "issue_date"        => 'required|date|date_format:Y-m-d|after:yesterday',
+            "expiry_date"       => 'required|date|date_format:Y-m-d|after:issue_date',
             "country"           => 'required|string|min:1|max:255',
             "customer_identifier" => "required|string|min:1|max:255|exists:customers,customer_code"
         ];

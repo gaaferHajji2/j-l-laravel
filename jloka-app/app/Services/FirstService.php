@@ -48,4 +48,10 @@ class FirstService implements IFirstInterface
     public function getCustomerByEmailOrCode(string $name, string $code) {
         return Customer::where(['name' => $name])->orWhere(['customer_code' => $code])->first();
     }
+
+    public function getPassportDataByCustomerIdentifier(string $customerIdentifier) {
+        return Passport::select('passport_uid', 'customer_identifier')
+            ->where(['customer_identifier' => $customerIdentifier])
+            ->first();
+    }
 }

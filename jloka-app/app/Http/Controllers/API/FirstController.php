@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePassportRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Http\Resources\GetAllCustomerResource;
+use App\Http\Resources\GetAllPassportDataResource;
 use App\Http\Resources\GetDetailCustomerResource;
 use App\Interfaces\IFirstInterface;
 
@@ -46,6 +47,14 @@ class FirstController extends Controller
     }
 
     public function createNewPassportData(CreatePassportRequest $request) {
-        return response()->json($this->service->createNewPassport($request), 201);
+
+        $t1 = $this->service->getPassportDataByCustomerIdentifier($request->customer_identifier);
+        if($t1 != null) {
+            return response()->json([
+                "msg" => "You have passport"
+            ], 403);
+        }
+
+        return (new GetAllPassportDataResource($this->service->createNewPassport($request)))->response()->setStatusCode(201);
     }
 }

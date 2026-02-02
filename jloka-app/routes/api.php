@@ -13,3 +13,7 @@ Route::prefix('customers')->group(function() {
     Route::post('/', [FirstController::class, 'createNewCustomer']);
     Route::get('/{id}', [FirstController::class, 'getCustomerById']);
 });
+
+Route::prefix('passports')->group(function() {
+    Route::post('/', [FirstController::class, 'createNewPassportData']);
+});
