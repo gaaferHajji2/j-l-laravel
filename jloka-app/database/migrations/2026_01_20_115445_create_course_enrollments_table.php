@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('course_enrollments', function (Blueprint $table) {
             $table->id();
-            $table->string('student_reg_number'); // Custom foreign key for student
-            $table->string('course_code');        // Custom foreign key for course
+            $table->uuid('student_reg_number'); // Custom foreign key for student
+            $table->uuid('course_code');        // Custom foreign key for course
             
             // Custom columns in pivot table
             $table->date('enrollment_date');
