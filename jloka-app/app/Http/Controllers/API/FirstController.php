@@ -57,4 +57,8 @@ class FirstController extends Controller
 
         return (new GetAllPassportDataResource($this->service->createNewPassport($request)))->response()->setStatusCode(201);
     }
+
+    public function getPassportWithCustomerById(int $id) {
+        return response()->json($this->service->getPassportByIdWithCustomer($id));
+    }
 }

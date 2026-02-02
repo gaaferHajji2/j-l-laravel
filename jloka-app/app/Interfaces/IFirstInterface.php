@@ -8,9 +8,10 @@ use App\Http\Requests\CustomerRequest;
 interface IFirstInterface
 {
     public function createNewCustomer(CustomerRequest $request);
-    public function createNewPassport(CreatePassportRequest $request);
     public function getAllCustomers();
     public function getCustomerById(int $id);
     public function getCustomerByEmailOrCode(string $name, string $code);
+    public function createNewPassport(CreatePassportRequest $request);
     public function getPassportDataByCustomerIdentifier(string $customerIdentifier);
+    public function getPassportByIdWithCustomer(int $id);
 }

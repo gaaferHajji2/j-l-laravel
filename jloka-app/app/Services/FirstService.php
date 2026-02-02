@@ -54,4 +54,10 @@ class FirstService implements IFirstInterface
             ->where(['customer_identifier' => $customerIdentifier])
             ->first();
     }
+
+    public function getPassportByIdWithCustomer(int $id) {
+        return Passport::where(['passport_uid' => $id])->with(['customer' => function($query) {
+            $query->select('customer_code', 'name', 'email');
+        }])->first();
+    }
 }

@@ -10,7 +10,7 @@ class Passport extends Model
     
     public function customer()
     {
-        return $this->belongsTo(User::class, 'user_identifier', 'user_code');
+        return $this->belongsTo(Customer::class, 'customer_identifier', 'customer_code');
     }
 
 }
