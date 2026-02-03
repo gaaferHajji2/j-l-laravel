@@ -17,6 +17,6 @@ interface IFirstInterface
     public function getPassportDataByCustomerIdentifier(string $customerIdentifier);
     public function getPassportByIdWithCustomer(int $id);
 
-    public function getAuthorById(int $id);
+    public function getAuthorById(string $id);
     public function createNewAuthor(CreateAuthorRequest $request);
 }

@@ -67,7 +67,7 @@ class FirstController extends Controller
         return response()->json($this->service->createNewAuthor($request), 201);
     }
 
-    public function getAuthorById(int $id) {
+    public function getAuthorById(string $id) {
         return response()->json($this->service->getAuthorById($id), 200);
     }
 }

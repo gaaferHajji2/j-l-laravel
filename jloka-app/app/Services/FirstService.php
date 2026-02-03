@@ -63,8 +63,8 @@ class FirstService implements IFirstInterface
         }])->first();
     }
 
-    public function getAuthorById(int $id){
-        return Author::with('books')->where([ 'id' => $id ])->first();
+    public function getAuthorById(string $id){
+        return Author::with('books')->where([ 'author_slug' => $id ])->first();
     }
     
     public function createNewAuthor(CreateAuthorRequest $request){
