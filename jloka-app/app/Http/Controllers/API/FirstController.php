@@ -77,6 +77,6 @@ class FirstController extends Controller
     }
 
     public function getBookById(int $id) {
-        return response()->json($this->service->getAuthorById($id));
+        return response()->json($this->service->getBookById($id));
     }
 }
