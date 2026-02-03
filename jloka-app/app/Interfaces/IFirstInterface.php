@@ -5,6 +5,7 @@ namespace App\Interfaces;
 use App\Http\Requests\CreateAuthorRequest;
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreatePassportRequest;
+use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\CustomerRequest;
 
 interface IFirstInterface
@@ -23,4 +24,7 @@ interface IFirstInterface
 
     public function getBookById(int $id);
     public function createNewBook(CreateBookRequest $request);
+
+    public function getStudentById(string $id);
+    public function createNewStudent(CreateStudentRequest $request);
 }

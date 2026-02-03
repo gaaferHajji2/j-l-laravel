@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Http\Requests\CreateAuthorRequest;
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreatePassportRequest;
+use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Interfaces\IFirstInterface;
 use App\Models\Author;
@@ -89,6 +90,13 @@ class FirstService implements IFirstInterface
         $book->writer_id = $request->writer_id;
         $book->save();
         return $book;
+    }
+
+    public function getStudentById(string $id) {
+
+    }
+    public function createNewStudent(CreateStudentRequest $request) {
+        
     }
 
 }
