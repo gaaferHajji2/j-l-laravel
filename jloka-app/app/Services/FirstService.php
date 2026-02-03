@@ -2,10 +2,12 @@
 namespace App\Services;
 
 use App\Http\Requests\CreateAuthorRequest;
+use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreatePassportRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Interfaces\IFirstInterface;
 use App\Models\Author;
+use App\Models\Book;
 use App\Models\Customer;
 use App\Models\Passport;
 
@@ -75,6 +77,18 @@ class FirstService implements IFirstInterface
         $author->bio = $request->bio;
         $author->save();
         return $author;
+    }
+    public function getBookById(int $id) {
+        return Book::with('author')->find($id);
+    }
+    public function createNewBook(CreateBookRequest $request){
+        $book = new Book();
+        $book->title = $request->title;
+        $book->isbn = $request->isbn;
+        $book->published_date = $request->published_date;
+        $book->writer_id = $request->writer_id;
+        $book->save();
+        return $book;
     }
 
 }
