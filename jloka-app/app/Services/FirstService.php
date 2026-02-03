@@ -93,8 +93,9 @@ class FirstService implements IFirstInterface
     }
 
     public function getStudentById(string $id) {
-
+    
     }
+    
     public function createNewStudent(CreateStudentRequest $request) {
         
     }
