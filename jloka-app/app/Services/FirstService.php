@@ -1,9 +1,11 @@
 <?php
 namespace App\Services;
 
+use App\Http\Requests\CreateAuthorRequest;
 use App\Http\Requests\CreatePassportRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Interfaces\IFirstInterface;
+use App\Models\Author;
 use App\Models\Customer;
 use App\Models\Passport;
 
@@ -60,4 +62,19 @@ class FirstService implements IFirstInterface
             $query->select('customer_code', 'name', 'email');
         }])->first();
     }
+
+    public function getAuthorById(int $id){
+        return Author::with('books')->where([ 'id' => $id ])->first();
+    }
+    
+    public function createNewAuthor(CreateAuthorRequest $request){
+        $author = new Author();
+        $author->author_slug = $request->author_slug;
+        $author->name = $request->name;
+        $author->email = $request->email;
+        $author->bio = $request->bio;
+        $author->save();
+        return $author;
+    }
+
 }

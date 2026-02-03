@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateAuthorRequest;
 use App\Http\Requests\CreatePassportRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Http\Resources\GetAllCustomerResource;
@@ -60,5 +61,13 @@ class FirstController extends Controller
 
     public function getPassportWithCustomerById(int $id) {
         return response()->json($this->service->getPassportByIdWithCustomer($id));
+    }
+
+    public function createNewAuthor(CreateAuthorRequest $request) {
+        return response()->json($this->service->createNewAuthor($request), 201);
+    }
+
+    public function getAuthorById(int $id) {
+        return response()->json($this->service->getAuthorById($id), 200);
     }
 }
