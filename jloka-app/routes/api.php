@@ -23,3 +23,8 @@ Route::prefix('authors')->group(function() {
     Route::post('/', [FirstController::class, 'createNewAuthor']);
     Route::get('/{id}', [FirstController::class, 'getAuthorById']);
 });
+
+Route::prefix('books')->group(function() {
+    Route::post('/', [FirstController::class, 'createNewBook']);
+    Route::get('/{id}', [FirstController::class, 'getBookById']);
+});
