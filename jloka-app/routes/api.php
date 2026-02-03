@@ -18,3 +18,8 @@ Route::prefix('passports')->group(function() {
     Route::post('/', [FirstController::class, 'createNewPassportData']);
     Route::get('/{id}', [FirstController::class, 'getPassportWithCustomerById']);
 });
+
+Route::prefix('authors')->group(function() {
+    Route::post('/', [FirstController::class, 'createNewAuthor']);
+    Route::get('/{id}', [FirstController::class, 'getAuthorById']);
+});
