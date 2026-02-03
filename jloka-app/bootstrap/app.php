@@ -15,7 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('api')
             ->prefix('webhooks')
             ->name('webhooks.')
-            ->group(base_path('routes/webhooks.php'));   
+            ->group(base_path('routes/webhooks.php'));
+
+            Route::middleware('api')
+            ->prefix('enroll')
+            ->name('enroll.')
+            ->group(base_path('routes/enrollments.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
