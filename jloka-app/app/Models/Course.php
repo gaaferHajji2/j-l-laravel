@@ -22,5 +22,4 @@ class Course extends Model
         ->withTimestamps()
         ->using(CourseEnrollment::class);
     }
-
 }

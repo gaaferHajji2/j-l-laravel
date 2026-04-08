@@ -79,9 +79,11 @@ class FirstService implements IFirstInterface
         $author->save();
         return $author;
     }
+
     public function getBookById(int $id) {
         return Book::with('author')->find($id);
     }
+    
     public function createNewBook(CreateBookRequest $request){
         $book = new Book();
         $book->title = $request->title;
@@ -99,5 +101,4 @@ class FirstService implements IFirstInterface
     public function createNewStudent(CreateStudentRequest $request) {
         
     }
-
 }

@@ -12,5 +12,4 @@ class Passport extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_identifier', 'customer_code');
     }
-
 }

@@ -49,14 +49,12 @@ class FirstController extends Controller
     }
 
     public function createNewPassportData(CreatePassportRequest $request) {
-
         $t1 = $this->service->getPassportDataByCustomerIdentifier($request->customer_identifier);
         if($t1 != null) {
             return response()->json([
                 "msg" => "You have passport"
             ], 403);
         }
-
         return (new GetAllPassportDataResource($this->service->createNewPassport($request)))->response()->setStatusCode(201);
     }
 
