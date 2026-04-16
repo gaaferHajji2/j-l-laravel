@@ -10,9 +10,9 @@ class PermissionsController extends Controller
 {
     public function assignPermissionToUser(Request $request)
     {
-        $user = User::findOrFail(auth()->user()->id);
+        // $user = User::findOrFail(auth()->user()->id);
 
-        $user->givePermissionTo($request->permission);
+        auth()->user()->givePermissionTo($request->permission);
 
         return response()->json([
             'message' => 'Permission assigned'
@@ -21,9 +21,9 @@ class PermissionsController extends Controller
 
     public function revokePermissionFromUser(Request $request)
     {
-        $user = User::findOrFail(auth()->user()->id);
+        // $user = User::findOrFail(auth()->user()->id);
 
-        $user->revokePermissionTo($request->permission);
+        auth()->user()->revokePermissionTo($request->permission);
 
         return response()->json([
             'message' => 'Permission revoked'

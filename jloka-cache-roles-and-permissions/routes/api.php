@@ -1,10 +1,19 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 
 use Illuminate\Support\Facades\Route;
+
+Route::middleware('auth:sanctum')-> group(function(){
+    Route::post('/permission/user', [PermissionsController::class, 'assignPermissionToUser']);
+
+    Route::post('/permission/user/revoke', [PermissionsController::class, 'revokePermissionFromUser']);
+
+    Route::post('/permission/role', [PermissionsController::class, 'assignPermissionToRole']);
+});
 
 Route::middleware('auth:sanctum')->group(function () {
 
