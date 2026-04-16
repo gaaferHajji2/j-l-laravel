@@ -63,7 +63,7 @@ class AuthController extends Controller
     public function me(Request $request): JsonResponse
     {
         return response()->json([
-            'user' => $request->user(),
+            'user' => $request->user()->makeHidden(['roles', 'permissions']),
             'roles' => $request->user()->getRoleNames(),
             'permissions' => $request->user()->getAllPermissions()->pluck('name'),
         ]);
