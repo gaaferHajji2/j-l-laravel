@@ -45,6 +45,10 @@ class PermissionSeeder extends Seeder
             'name' => 'manager'
         ]);
 
+        $viewer = Role::firstOrCreate(['name' => 'viewer']);
+
+        $viewer->givePermissionTo(['view-products']);
+
         $manager->givePermissionTo([
             'users.view',
             'products.view',
