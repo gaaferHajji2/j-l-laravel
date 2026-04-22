@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Service\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductController extends Controller
 {
@@ -32,8 +31,13 @@ class ProductController extends Controller
         try{
             $product = $this->productService->getProduct($id);
             return response()->json($product);
-        } catch(NotFoundHttpException $e) {
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([], 404);
+        } catch(\Exception $e) {
+            return response()->json([
+                'class' => get_class($e),
+                'msg' => $e->getMessage()
+            ], 500);
         }
     }
 
