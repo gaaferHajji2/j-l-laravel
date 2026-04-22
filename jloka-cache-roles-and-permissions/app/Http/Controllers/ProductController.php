@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductController extends Controller
 {
@@ -14,11 +15,10 @@ class ProductController extends Controller
     {
         $this->productService = $productService;
 
-        // Middleware attribute for each controller method
         $this->middleware('permission:products.view')->only(['index', 'show']);
         $this->middleware('permission:products.create')->only('store');
         $this->middleware('permission:products.edit')->only('update');
-        $this->middleware('permission:products.delete')->only('destroy');
+        $this->middleware('permissions:products.delete')->only('destroy');
     }
 
     public function index(): JsonResponse
@@ -29,8 +29,12 @@ class ProductController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        $product = $this->productService->getProduct($id);
-        return response()->json($product);
+        try{
+            $product = $this->productService->getProduct($id);
+            return response()->json($product);
+        } catch(NotFoundHttpException $e) {
+            return response()->json([], 404);
+        }
     }
 
     public function store(Request $request): JsonResponse
