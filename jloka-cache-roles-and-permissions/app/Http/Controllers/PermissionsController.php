@@ -13,29 +13,33 @@ class PermissionsController extends Controller
     {
         try {
             $request->user()->givePermissionTo($request->permission);
+
             return response()->json([
                 'message' => 'Permission assigned'
             ]);
-        }catch (PermissionDoesNotExist $e) {
+        } catch (PermissionDoesNotExist $e) {
+            return response()->json([
+                'msg' => 'Permission Not Found',
+                "details" => $e->getMessage(),
+            ], 404);
+        }
+    }
+
+    public function revokePermissionFromUser(Request $request)
+    {
+        try {
+            $request->user()->revokePermissionTo($request->permission);
+
+            return response()->json([
+                'message' => 'Permission revoked'
+            ]);
+        } catch (PermissionDoesNotExist $e) {
             return response()->json([
                 'msg' => 'Permission Not Found',
                 "details" => $e->getMessage(),
             ], 404);
         }
         
-    }
-
-    public function revokePermissionFromUser(Request $request)
-    {
-        $permission = Permission::findByName($request->permission);
-        
-        if($permission == null) {
-            return response()->json([
-                'message' => 'No Permission Found',
-            ]);
-        }
-
-        $request->user()->revokePermissionTo($request->permission);
 
         return response()->json([
             'message' => 'Permission revoked'
