@@ -3,27 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class PermissionsController extends Controller
 {
     public function assignPermissionToUser(Request $request)
     {
-        // $user = User::findOrFail(auth()->user()->id);
-
-        auth()->user()->givePermissionTo($request->permission);
-
-        return response()->json([
-            'message' => 'Permission assigned'
-        ]);
+        try {
+            $request->user()->givePermissionTo($request->permission);
+            return response()->json([
+                'message' => 'Permission assigned'
+            ]);
+        }catch (PermissionDoesNotExist $e) {
+            return response()->json([
+                'msg' => 'Permission Not Found',
+                "details" => $e->getMessage(),
+            ], 404);
+        }
+        
     }
 
     public function revokePermissionFromUser(Request $request)
     {
-        // $user = User::findOrFail(auth()->user()->id);
+        $permission = Permission::findByName($request->permission);
+        
+        if($permission == null) {
+            return response()->json([
+                'message' => 'No Permission Found',
+            ]);
+        }
 
-        auth()->user()->revokePermissionTo($request->permission);
+        $request->user()->revokePermissionTo($request->permission);
 
         return response()->json([
             'message' => 'Permission revoked'
