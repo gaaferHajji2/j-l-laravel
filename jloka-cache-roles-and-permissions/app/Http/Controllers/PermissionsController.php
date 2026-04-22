@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
+use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -39,21 +40,27 @@ class PermissionsController extends Controller
                 "details" => $e->getMessage(),
             ], 404);
         }
-        
-
-        return response()->json([
-            'message' => 'Permission revoked'
-        ]);
     }
 
     public function assignPermissionToRole(Request $request)
     {
-        $role = Role::findByName($request->role);
+        try {
+            $role = Role::findByName($request->role, 'web');
+            $role->givePermissionTo($request->permission);
 
-        $role->givePermissionTo($request->permission);
-
-        return response()->json([
-            'message' => 'Permission assigned to role'
-        ]);
+            return response()->json([
+                'message' => 'Permission assigned to role'
+            ]);
+        } catch (RoleDoesNotExist $e) {
+            return response()->json([
+                'msg' => 'Role Not Found',
+                "details" => $e->getMessage(),
+            ], 404);
+        } catch (PermissionDoesNotExist $e) {
+            return response()->json([
+                'msg' => 'Permission Not Found',
+                "details" => $e->getMessage(),
+            ], 404);
+        }
     }
 }
