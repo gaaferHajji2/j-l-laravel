@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Interface\ProductRepositoryInterface;
 use App\Models\Product;
 
-class ProductRepository
+class ProductRepository implements ProductRepositoryInterface
 {
     public function getAll()
     {
