@@ -66,9 +66,11 @@ class ProductController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         $validated = $request->validate([
-            'name' => 'sometimes|string|max:255',
+            'name' => 'required|string|max:255',
             'price' => 'sometimes|numeric',
             'description' => 'nullable|string',
+        ], [
+            'name.required' => __('name.required')
         ]);
         try {
             $product = $this->productService->updateProduct($id, $validated);
