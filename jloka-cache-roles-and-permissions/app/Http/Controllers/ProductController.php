@@ -88,7 +88,12 @@ class ProductController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-        $this->productService->deleteProduct($id);
+        $res = $this->productService->deleteProduct($id);
+        if($res == 0) {
+            return response()->json([
+                'msg' => 'No Product Found'
+            ], 404);
+        }
         return response()->json(['message' => 'Product deleted'], 204);
     }
 }
