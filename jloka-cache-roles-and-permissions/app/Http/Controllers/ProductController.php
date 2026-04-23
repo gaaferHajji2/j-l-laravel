@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Exception;
 
 class ProductController extends Controller
 {
@@ -35,7 +36,7 @@ class ProductController extends Controller
             return response()->json([], 404);
         } catch(\Exception $e) {
             return response()->json([
-                'class' => get_class($e),
+                // 'class' => get_class($e),
                 'msg' => $e->getMessage()
             ], 500);
         }
@@ -49,8 +50,17 @@ class ProductController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $product = $this->productService->createProduct($validated);
-        return response()->json($product, 201);
+        try {
+            $product = $this->productService->createProduct($validated);
+            return response()->json($product, 201);
+        } catch (Exception $e) {
+            return response()->json([
+                'msg' => "ISE",
+                'class' => get_class($e)
+            ], 500);
+        }
+
+        
     }
 
     public function update(Request $request, int $id): JsonResponse

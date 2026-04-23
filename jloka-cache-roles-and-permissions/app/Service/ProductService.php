@@ -25,7 +25,6 @@ class ProductService
 
     public function createProduct(array $data)
     {
-        // Any business logic (validation, notifications, etc.) goes here
         return $this->repository->create($data);
     }
 
