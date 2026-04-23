@@ -65,6 +65,7 @@ class ProductController extends Controller
 
     public function update(Request $request, int $id): JsonResponse
     {
+        app()->setLocale($request->lang ?? 'en');
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'sometimes|numeric',
@@ -73,6 +74,7 @@ class ProductController extends Controller
             'name.required' => __('name.required')
         ]);
         try {
+            
             $product = $this->productService->updateProduct($id, $validated);
             return response()->json($product);
         } catch (Exception $e) {
