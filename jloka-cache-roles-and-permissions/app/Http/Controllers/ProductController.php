@@ -70,9 +70,16 @@ class ProductController extends Controller
             'price' => 'sometimes|numeric',
             'description' => 'nullable|string',
         ]);
-
-        $product = $this->productService->updateProduct($id, $validated);
-        return response()->json($product);
+        try {
+            $product = $this->productService->updateProduct($id, $validated);
+            return response()->json($product);
+        } catch (Exception $e) {
+            return response()->json([
+                'msg' => 'ISE',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+        
     }
 
     public function destroy(int $id): JsonResponse
