@@ -18,7 +18,7 @@ class ProductController extends Controller
         $this->middleware('permission:products.view')->only(['index', 'show']);
         $this->middleware('permission:products.create')->only('store');
         $this->middleware('permission:products.edit')->only('update');
-        $this->middleware('permissions:products.delete')->only('destroy');
+        $this->middleware('permission:products.delete')->only('destroy');
     }
 
     public function index(): JsonResponse
