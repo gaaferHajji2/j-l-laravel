@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Laravel\Octane\Facades\Octane;
 
@@ -38,6 +39,67 @@ Route::get('/concurrent-task', function () {
         },
     ]);
     $end = hrtime(true);
-    return "{$result1} {$result2} in " . ($end - $start) /
-        1000000000 . ' seconds';
+    return "{$result1} {$result2} in ".($end - $start) /
+      1000000000 .' seconds';
+});
+
+Route::get('/get-random-number', function () {
+    $number = Cache::store('octane')->get('last-random-number', 0);
+    return $number;
+});
+
+Route::get('/increment-number', function () {
+    $number =
+      Cache::store('octane')->increment('my-number');
+    return $number;
+});
+
+Route::get('/decrement-number', function () {
+    $number =
+      Cache::store('octane')->decrement('my-number');
+    return $number;
+});
+
+Route::get('/save-many', function () {
+    Cache::store('octane')->putMany([
+        'my-number' => 42,
+        'my-string' => 'Hello World!',
+        'my-array' => ['Kiwi', 'Strawberry', 'Lemon'],
+    ]);
+    return "Items saved!";
+});
+
+Route::get('/get-many', function () {
+    $array = Cache::store('octane')->many([
+        'my-number',
+        'my-string',
+        'my-array',
+    ]);
+    return $array;
+});
+
+Route::get('/get-one-from-many/{key?}', function ($key = "my-number") {
+    return Cache::store('octane')->get($key);
+});
+
+Route::get('/table-create', function () {
+    // Getting the table instance
+    $table = Octane::table('my-table');
+    // looping 1..90 creating rows with fake() helper
+    for ($i=1; $i <= 90; $i++) {
+        $table->set($i,
+        [
+            'uuid' => fake()->uuid(),
+            'name' => fake()->name(),
+            'age' => fake()->numberBetween(18, 99),
+            'value' => fake()->randomFloat(2, 0, 1000)
+        ]);
+    }
+    return "Table created!";
+});
+
+Route::get('/table-get/', function () {
+    $table = Octane::table('my-table');
+    $row = $table->get(1);
+    return $row;
 });

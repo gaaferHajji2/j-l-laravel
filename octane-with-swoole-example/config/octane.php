@@ -154,6 +154,13 @@ return [
             'name' => 'string:1000',
             'votes' => 'int',
         ],
+
+        'my-table:100' => [
+            'uuid' => 'string:36',
+            'name' => 'string:1000',
+            'age' => 'int',
+            'value' => 'float',
+        ],
     ],
 
     /*
