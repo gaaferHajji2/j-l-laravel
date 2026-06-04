@@ -1,0 +1,327 @@
+    1  mkdir octane-example && cp -rf /mnt/c/Tests/j-l-laravel/jloka-cache-roles-and-permissions/ /home/jafar/octane-example
+    2  cp -rf /mnt/c/Tests/j-l-laravel/jloka-cache-roles-and-permissions/
+    3  cp -rf /mnt/c/Tests/j-l-laravel/jloka-cache-roles-and-permissions/ /home/jafar/
+    4  sudo apt update && sudo apt install -y software-properties-common && sudo add-apt-repository ppa:ondrej/php && sudo apt update && sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip unzip && php -v
+    5  curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+    6  sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer 
+    7  composer --version
+    8  cd jloka-cache-roles-and-permissions/
+    9  ls
+   10  composer update
+   11  ls
+   12  cd octane-example/
+   13  ls
+   14  cd jloka-cache-roles-and-permissions/
+   15  ls
+   16  clear
+   17  php artisan octane:install
+   18  cls
+   19  clear
+   20  php artisan octane:start
+   21  clear
+   22  php artisan octane:start
+   23  clear
+   24  php artisan octane:start
+   25  clear
+   26  php artisan octane:start
+   27  caddy fmt --overwrite
+   28  sudo snap install caddy
+   29  caddy fmt --overwrite
+   30  sudo caddy fmt --overwrite
+   31  clear
+   32  php artisan octane:start
+   33  clear
+   34  php artisan octane:start
+   35  clear
+   36  php artisan octane:start
+   37  ip addr
+   38  telnet 192.168.96.1 3306
+   39  sudo apt install inetutils-telnet
+   40  telnet 192.168.96.1 3306
+   41  php artisan serve
+   42  cls
+   43  clear
+   44  php artisan octane:start
+   45  caddy fmt --overwrite
+   46  sudo caddy fmt --overwrite
+   47  clear
+   48  php artisan octane:start
+   49  clear
+   50  php artisan octane:start
+   51  clear
+   52  php artisan octane:start
+   53  cd vendor/
+   54  cd laravel/octane/src/Commands/
+   55  cd stubs/
+   56  ls
+   57  caddy fmt --overwrite
+   58  clear
+   59  sudo caddy fmt --overwrite
+   60  clear
+   61  curl http://localhost:8000/static-class
+   62  clear
+   63  curl http://localhost:8000/static-class
+   64  clear
+   65  sudo apt-get install build-essential libssl-dev git -y
+   66  git clone https://github.com/wg/wrk.git wrk
+   67  cd wrk
+   68  sudo make
+   69  sudo cp wrk /usr/local/bin
+   70  php artisan make:class MyClass
+   71  clear
+   72  php artisan octane:start
+   73  clear
+   74  php artisan octane:start
+   75  clear
+   76  php artisan octane:start
+   77  clear
+   78  php artisan octane:start
+   79  wrk -t4 -c20 -d10s http://localhost:8000/static-class
+   80  clear
+   81  php artisan make:provider MyServiceProvider
+   82  php artisan octane:start --worker=2 --max-requests=5
+   83  clear
+   84  php artisan octane:start --workers=2 --max-requests=5
+   85  clear
+   86  php artisan octane:start --workers=2 --max-requests=5
+   87  clear
+   88  php artisan octane:start --workers=4 --max-requests=500
+   89  clear
+   90  php artisan octane:start
+   91  clear
+   92  php artisan octane:start
+   93  clear
+   94  php artisan octane:start --host=0.0.0.0
+   95  clear
+   96  php artisan octane:start --host=0.0.0.0
+   97  clear
+   98  php artisan octane:start --host=http://192.168.96.135/
+   99  clear
+  100  php artisan octane:start --host=192.168.96.135
+  101  clear
+  102  php artisan octane:start --host=0.0.0.0
+  103  sudo php artisan octane:start --host=0.0.0.0
+  104  php artisan octane:start --host=0.0.0.0
+  105  wrk -t10 -c100 -d5s http://localhost:8000/static-class
+  106  wrk -t100 -c100 -d5s http://localhost:8000/static-class
+  107  wrk -t100 -c100 -d10s http://localhost:8000/static-class
+  108  clear
+  109  wrk -t100 -c100 -d10s http://localhost:8000/static-class
+  110  wrk -t10 -c20 -d10s http://localhost:8000/static-class
+  111  ip addr
+  112  clear
+  113  cd ..
+  114  composer global require laravel/installer
+  115  laravel new octane-with-roadrunner-example
+  116  php artisan migrate
+  117  cls
+  118  clear
+  119  php artisan migrate
+  120  php -m | grep PDO
+  121  sudo apt-get install php-mariadb
+  122  sudo apt-get install php-mysql
+  123  sudo vscode /etc/php/8.4/cli/php.ini 
+  124  clear
+  125  sudo nano /etc/php/8.4/cli/php.ini 
+  126  clear
+  127  php artisan migrate
+  128  clear
+  129  sudo apt-get update
+  130  sudo apt-get remove --purge php-common
+  131  clear
+  132  sudo apt-get install php-common php-mysql php-cli
+  133  clear
+  134  sudo nano /etc/php/8.4/cli/php.ini 
+  135  clear
+  136  php artisan migrate
+  137  php -m | grep pdo_mysql
+  138  sudo service apache2 restart
+  139  php -m | grep pdo_mysql
+  140  sudo systemctl restart php8.4-fpm
+  141  clear
+  142  php -i 
+  143  cls
+  144  clear
+  145  php -i | grep -i pdo
+  146  sudo apt install -y php8.4-pdo-mysql
+  147  sudo systemctl restart php-fpm
+  148  php artisan migrate
+  149  ip addr
+  150  clear
+  151  php artisan migrate
+  152  clear
+  153  sudo apt-get update
+  154  sudo apt-get install mariadb-server
+  155  sudo service mysql start
+  156  sudo service mysql status
+  157  ip addr
+  158  clear
+  159  sudo service mysql 
+  160  clear
+  161  php artisan migrate
+  162  sudo mysql -u root
+  163  clear
+  164  sudo service mysql restart
+  165  clear
+  166  php artisan migrate
+  167  ip addr
+  168  hostname -I
+  169  mysql -u root -p
+  170  clear
+  171  php artisan migrate
+  172  sudo apt-get install php-dom
+  173  sudo apt install php8.4-xml
+  174  clear
+  175  php artisan migrate
+  176  sudo apt-get install php8.4-mbstring
+  177  clear
+  178  php artisan migrate
+  179  mysqld --help --verbose
+  180  code /etc/my.cnf
+  181  sudo nano /etc/mysql/my.cnf
+  182  sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf 
+  183  sudo service mysql restart
+  184  clear
+  185  ip addr
+  186  sudo service mysql status
+  187  exit
+  188  pd -aux
+  189  clear
+  190  ps -aux
+  191  clear
+  192  sudo grep -r "bind-address" /etc/mysql/
+  193  sudo service mysql status
+  194  exit
+  195  php artisan package:discover
+  196  clear
+  197  composer require spiral/roadrunner-cli
+  198  clear
+  199  composer require nyholm/psr7
+  200  clear
+  201  ./vendor/bin/rr get-binary
+  202  vendor/bin/rr -V
+  203  clear
+  204  vendor/bin/rr -v
+  205  rr -V
+  206  clear
+  207  ls
+  208  ./rr -V
+  209  ./rr -v
+  210  clear
+  211  ./rr -v
+  212  clear
+  213  ./rr serve
+  214  cls
+  215  clear
+  216  ./rr serve
+  217  clear
+  218  composer require spiral/roadrunner-http nyholm/psr7
+  219  clear
+  220  ./rr serve
+  221  clear
+  222  ./rr serve
+  223  clear
+  224  ./rr serve
+  225  wrk -u 100 -r 50 -t10s  http://localhost:8000
+  226  wrk -t 1000 -d10s http://localhost:8000
+  227  clear
+  228  wrk -t12 -c400 -d10s http://localhost:8000/
+  229  cls
+  230  clear
+  231  wrk -t12 -c400 -d10s http://localhost:8000/
+  232  cd ..
+  233  clear
+  234  laravel new laravel-octane-with-swoole-example
+  235  php -i | grep -i curl
+  236  clear
+  237  php --help
+  238  php -i
+  239  clear
+  240  php -i | grep curl
+  241  sudo code .
+  242  sudo nano /etc/php/8.4/cli/php.ini
+  243  clear
+  244  laravel new laravel-octane-swoole-example
+  245  clear
+  246  ./rr serve
+  247  clear
+  248  ls
+  249  composer require laravel/octane
+  250  clear
+  251  php artisan octane:install
+  252  clear
+  253  php artisan octane:start
+  254  clear
+  255  php artisan octane:start --workers=4
+  256  clear
+  257  php artisan octane:start --workers=8
+  258  clear
+  259  cd ..
+  260  clear
+  261  laravel new laravel-octane-swoole-example
+  262  clea
+  263  r
+  264  clear
+  265  sudo apt update && sudo apt install php-curl
+  266  cd .. && clear
+  267  laravel new laravel-octane-swoole-example
+  268  php artisan octane:start
+  269  clear
+  270  composer require laravel/octane
+  271  php artisan octane:install
+  272  apt list php8.4-swoole
+  273  php --version
+  274  php --ri swoole
+  275  clear
+  276  sudo apt install php8.4-swoole
+  277  php --ri swoole
+  278  clear
+  279  php artisan octane:start
+  280  clear
+  281  php artisan octane:start
+  282  mariadb -u root -p
+  283  clear
+  284  php artisan migrate
+  285  clear
+  286  php artisan octane:start
+  287  clear
+  288  php artisan octane:start
+  289  sudo apt purge php8.4-swoole
+  290  clear
+  291  php -ri swoole
+  292  php artisan octane:start
+  293  clear
+  294  php artisan octane:start
+  295  clear
+  296  php artisan octane:start
+  297  clear
+  298  php artisan octane:reload
+  299  clear
+  300  php artisan octane:start
+  301  wrk -c100 -t100 -d10s http://127.0.0.1:8000
+  302  wrk -t12 -c400 -d30s http://localhost:8000/
+  303  apt list php8.4-openswoole
+  304  apt install php8.4-openswoole
+  305  clear
+  306  sudo apt install php8.4-openswoole
+  307  clear
+  308  wrk -t12 -c400 -d30s http://localhost:8000/
+  309  php artisan octane:start
+  310  clear
+  311  php artisan octane:start
+  312  clear 
+  313  php artisan octane:start --host 0.0.0.0
+  314  clear
+  315  php artisan octane:start --host 0.0.0.0
+  316  clear
+  317  php artisan octane:start --host 0.0.0.0
+  318  clear
+  319  php artisan octane:start --host 0.0.0.0
+  320  clear
+  321  php artisan octane:start --host 0.0.0.0
+  322  cls
+  323  clear
+  324  php artisan octane:start --host 0.0.0.0
+  325  clear
+  326  cat history > history.txt
+  327  history > history.txt

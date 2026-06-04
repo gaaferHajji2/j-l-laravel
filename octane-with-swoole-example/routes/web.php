@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Laravel\Octane\Facades\Octane;
+use Illuminate\Support\Facades\App;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,8 +40,8 @@ Route::get('/concurrent-task', function () {
         },
     ]);
     $end = hrtime(true);
-    return "{$result1} {$result2} in ".($end - $start) /
-      1000000000 .' seconds';
+    return "{$result1} {$result2} in " . ($end - $start) /
+        1000000000 . ' seconds';
 });
 
 Route::get('/get-random-number', function () {
@@ -50,13 +51,13 @@ Route::get('/get-random-number', function () {
 
 Route::get('/increment-number', function () {
     $number =
-      Cache::store('octane')->increment('my-number');
+        Cache::store('octane')->increment('my-number');
     return $number;
 });
 
 Route::get('/decrement-number', function () {
     $number =
-      Cache::store('octane')->decrement('my-number');
+        Cache::store('octane')->decrement('my-number');
     return $number;
 });
 
@@ -86,14 +87,16 @@ Route::get('/table-create', function () {
     // Getting the table instance
     $table = Octane::table('my-table');
     // looping 1..90 creating rows with fake() helper
-    for ($i=1; $i <= 90; $i++) {
-        $table->set($i,
-        [
-            'uuid' => fake()->uuid(),
-            'name' => fake()->name(),
-            'age' => fake()->numberBetween(18, 99),
-            'value' => fake()->randomFloat(2, 0, 1000)
-        ]);
+    for ($i = 1; $i <= 90; $i++) {
+        $table->set(
+            $i,
+            [
+                'uuid' => fake()->uuid(),
+                'name' => fake()->name(),
+                'age' => fake()->numberBetween(18, 99),
+                'value' => fake()->randomFloat(2, 0, 1000)
+            ]
+        );
     }
     return "Table created!";
 });
@@ -102,4 +105,20 @@ Route::get('/table-get/', function () {
     $table = Octane::table('my-table');
     $row = $table->get(1);
     return $row;
+});
+
+Route::get('/table-get-all', function () {
+    $table = Octane::table('my-table');
+    $rows = [];
+    foreach ($table as $key => $value) {
+        $rows[$key] = $table->get($key);
+    }
+    // adding as first row the table rows count
+    $rows[0] = count($table);
+    return $rows;
+});
+
+Route::get('/metrics', function () {
+    $server = App::make(Swoole\Http\Server::class);
+    return $server->stats();
 });
