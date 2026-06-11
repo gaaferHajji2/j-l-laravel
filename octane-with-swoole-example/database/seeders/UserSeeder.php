@@ -14,7 +14,9 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $data = [];
-        $passwordEnc = Hash::make(fake()->password());
+        $password = fake()->password();
+        error_log("The password is: $password");
+        $passwordEnc = Hash::make($password);
         for ($i = 0; $i < 1000; $i++) {
             $data[] =
             [

@@ -325,3 +325,5 @@
   325  clear
   326  cat history > history.txt
   327  history > history.txt
+---------------------------------------
+The password is: Ei!5![t.
