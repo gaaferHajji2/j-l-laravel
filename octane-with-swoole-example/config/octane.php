@@ -161,6 +161,17 @@ return [
             'age' => 'int',
             'value' => 'float',
         ],
+
+        'cache' => [
+            'key' => 'string:256',
+            'value' => 'string:2048576', // Increase this (e.g., 1MB)
+            'expiration' => 'int:8',
+        ],
+        'request_context' => [
+            'key' => 'string:256',
+            'value' => 'string:2048576', // Increase this too
+        ],
+
     ],
 
     /*
@@ -176,7 +187,7 @@ return [
 
     'cache' => [
         'rows' => 1000,
-        'bytes' => 10000,
+        'bytes' => 100000,
     ],
 
     /*

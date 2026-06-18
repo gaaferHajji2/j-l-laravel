@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Octane\Exceptions\TaskTimeoutException;
 use Laravel\Octane\Facades\Octane;
 
 class DashboardController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $time = hrtime(true);
         $count = Event::count();
         $info = Event::ofType('INFO')->get();
@@ -25,17 +27,17 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function indexConcurrent() {
+    public function indexConcurrent()
+    {
         $time = hrtime(true);
         try {
             [$count, $info, $warning, $alert] = Octane::concurrently([
-                fn () => Event::count(),
-                fn () => Event::ofType('INFO')->get(),
-                fn () => Event::ofType('WARNING')->get(),
-                fn () => Event::ofType('ALERT')->get(),
+                fn() => Event::count(),
+                fn() => Event::ofType('INFO')->get(),
+                fn() => Event::ofType('WARNING')->get(),
+                fn() => Event::ofType('ALERT')->get(),
             ]);
-
-        }catch (TaskTimeoutException $e) {
+        } catch (TaskTimeoutException $e) {
             return response()->json([
                 "msg" => $e->getMessage(),
             ]);
@@ -47,6 +49,32 @@ class DashboardController extends Controller
             'warning'   => $warning,
             'alert'     => $alert,
             'totalTime' => $totalTime,
+        ]);
+    }
+
+    public function indexConcurrentCached()
+    {
+        $time = hrtime(true);
+        [$count, $info, $warning, $alert] = Cache::store('octane')->remember(
+            key: 'key-event-cache',
+            ttl: 20,
+            callback: function () {
+                return Octane::concurrently([
+                    fn() => Event::count(),
+                    fn() => Event::ofType('INFO')->get(),
+                    fn() => Event::ofType('WARNING')->get(),
+                    fn() => Event::ofType('ALERT')->get(),
+                ]);
+            }
+        );
+
+        $time = (hrtime(true) - $time) / 1_000_000;
+        return response()->json([
+            'count'     => $count,
+            'info'      => $info,
+            'warning'   => $warning,
+            'alert'     => $alert,
+            'totalTime' => $time,
         ]);
     }
 }
