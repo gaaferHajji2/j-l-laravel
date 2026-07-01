@@ -8,6 +8,11 @@ class Event extends Model
 {
     public function scopeOfType(mixed $query, string $type): mixed
     {
-        return $query->where('type', $type)->where('description', 'LIKE', '%something%')->orderBy('date')->limit(5);
+        return $query
+            ->where('type', $type)
+            // ->where('description', 'LIKE', '%something%')
+            ->whereFullText('description', 'something other')
+            ->orderBy('date')
+            ->limit(5);
     }
 }

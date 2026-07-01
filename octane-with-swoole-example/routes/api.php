@@ -77,3 +77,7 @@ Octane::route('GET', '/dashboard-concurrent-cached', function
 () {
     return (new DashboardController)->indexConcurrentCached();
 });
+
+Octane::route('GET', '/api/index-tick-cached', function () {
+    return (new DashboardController)->indexTickCached();
+});

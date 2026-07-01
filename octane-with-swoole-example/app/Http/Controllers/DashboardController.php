@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Exception;
 use Illuminate\Support\Facades\Cache;
 use Laravel\Octane\Exceptions\TaskTimeoutException;
 use Laravel\Octane\Facades\Octane;
@@ -76,5 +77,21 @@ class DashboardController extends Controller
             'alert'     => $alert,
             'totalTime' => $time,
         ]);
+    }
+
+    public function indexTickCached()
+    {
+        $time = hrtime(true);
+        try {
+            $result = Cache::store('octane')->get(
+                'cached-result-tick'
+            );
+        } catch (Exception $e) {
+            return 'Error: ' . $e->getMessage();
+        }
+        $time = (hrtime(true) - $time) / 1_000_000;
+        $result['time'] = $time;
+
+        return response()->json($result);
     }
 }

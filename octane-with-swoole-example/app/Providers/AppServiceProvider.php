@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Event;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
@@ -26,11 +27,24 @@ class AppServiceProvider extends ServiceProvider
         //     'simple-ticker', fn () => Log::info("OCTANE TICk", ['timestamp' => now()])
         // )->seconds(10)->immediate();
 
-        Octane::tick('cache-last-random-number', function() {
-            $number = rand(1, 1000);
-            Cache::store('octane')->put('last-random-number', $number);
-            Log::info("New number in cache: " . $number, ['timestamp' => now()]);
-            return;
-        })->seconds(10)->immediate();
+        Octane::tick('caching-query', function () {
+            Log::info('caching-query.', ['timestamp' => now()]);
+            $time = hrtime(true);
+
+            $count = Event::count();
+            $eventsInfo = Event::ofType('INFO')->get();
+            $eventsWarning = Event::ofType('WARNING')->get();
+            $eventsAlert = Event::ofType('ALERT')->get();
+
+            $time = (hrtime(true) - $time) / 1_000_000;
+            $result = [
+                'count' => $count,
+                'eventsInfo'=> $eventsInfo,
+                'eventsWarning' => $eventsWarning,
+                'eventsAlert'=> $eventsAlert,
+                'cached_time' => $time,
+            ];
+            Cache::store('octane')->put('cached-result-tick', $result);
+        })->seconds(60)->immediate();
     }
 }
